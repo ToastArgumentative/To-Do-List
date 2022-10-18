@@ -37,24 +37,23 @@ class Todo(db.Model):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    #todo_list = Todo.query.all()
     error = None
     if request.method == 'POST':
         if (request.form['username'] != 'admin') or request.form['password'] != 'tmp':
             error = 'Invalid Credentials. Please try again.'
         else:
-            #session['logged_in'] = True
-            #flash('You were logged in.')
             return redirect(url_for('parent'))
 
-   #     if(request.form["username"] == "") or request.form["password"] == "":
-   #         return render_template("main", todo_list=todo_list)
-   #     if(request.form["username"] == "admin") or request.form["password"] == "tmp":
-  #          return render_template("parent", todo_list=todo_list)
-  #      else:
- #           error = "Invalid Credentials. Try again!"
-
     return render_template('login.html', error=error)
+
+# -------------------- #
+# -------End-Of--------#
+# -------------------- #
+# ---Authentication----#
+# -------------------- #
+# -------------------- #
+
+
 
 # -------------------- #
 # ------Start-Of-------#
@@ -100,4 +99,4 @@ def delete(todo_id):
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-    app.run(debug=True, host="10.0.0.149", port=80)
+    app.run(debug=False, host="127.0.0.1", port=80)
